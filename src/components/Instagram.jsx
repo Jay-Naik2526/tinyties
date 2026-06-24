@@ -18,7 +18,7 @@ export default function Instagram({ fadeStyle }) {
           Find us on <em>Instagram</em>
         </h2>
         <div style={{ width: 60, height: 1, background: `linear-gradient(to right, ${C.gold}, transparent)`, margin: "1.5rem auto" }} />
-        <div className="insta-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: "0.5rem", maxWidth: 860, margin: "2.5rem auto" }}>
+        <div className="insta-grid">
           {grid.map((src, i) => (
             <a key={i} href="https://www.instagram.com/tiny._ties/" target="_blank" rel="noopener noreferrer" className="insta-tile" style={{ display: "block", aspectRatio: "1", borderRadius: "0.75rem", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s, opacity 0.3s" }}>
               <img src={src} alt={`Tiny Ties Beaded Jewelry ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />

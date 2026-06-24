@@ -266,7 +266,7 @@ export default function Shop({ fadeStyle, addToCart, onQuickView }) {
           </button>
         </div>
       ) : (
-        <div className="products-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "1.5rem", maxWidth: 1100, margin: "0 auto" }}>
+        <div className="products-grid">
           {filteredAndSorted.map((p, i) => (
             <article key={p.name} className="product-card" data-id={`p${i}`}
               itemScope itemType="https://schema.org/Product"

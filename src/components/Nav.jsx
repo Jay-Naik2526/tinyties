@@ -7,7 +7,7 @@ const C = {
 };
 
 const INSTA_URL = "https://www.instagram.com/tiny._ties/";
-const INSTA_DM = "https://www.instagram.com/direct/t/18190311574339120/";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 
 const allLinks = [
   { label: "About", href: "#about" },

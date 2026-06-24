@@ -1,5 +1,5 @@
 const C = { deepRose: "#9e5a6a", goldLight: "#e8d5a3" };
-const INSTA_DM = "https://www.instagram.com/direct/t/18190311574339120/";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 
 export default function CustomCTA({ fadeStyle }) {
   return (

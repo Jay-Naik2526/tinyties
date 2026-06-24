@@ -6,12 +6,12 @@ const C = {
 export default function About({ fadeStyle }) {
   return (
     <section id="about" className="section-padding" aria-label="About Tiny Ties" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto" }}>
-      <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }} data-id="about">
-        <div className="about-visual" style={{ position: "relative", height: 420, ...fadeStyle("about", 0) }} aria-hidden="true">
-          <div style={{ position: "absolute", width: "72%", height: 340, top: 0, left: 0, borderRadius: "2rem", background: `linear-gradient(135deg, ${C.softPink}, ${C.blush})`, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="about-grid" data-id="about">
+        <div className="about-visual" style={fadeStyle("about", 0)} aria-hidden="true">
+          <div>
             <img src="/images/friendship-bracelet.jpeg" alt="Handmade friendship bracelets" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
-          <div style={{ position: "absolute", width: "52%", height: 190, bottom: 0, right: 0, borderRadius: "2rem", border: `2px solid ${C.goldLight}`, background: C.cream, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div>
             <img src="/images/sunshine.jpeg" alt="Sunshine beaded bracelet" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
           <div style={{ position: "absolute", width: 110, height: 110, borderRadius: "50%", border: `1.5px solid ${C.gold}`, opacity: 0.5, top: -15, right: 15 }} />

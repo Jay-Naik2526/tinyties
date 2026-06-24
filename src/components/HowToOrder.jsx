@@ -18,7 +18,7 @@ export default function HowToOrder({ fadeStyle }) {
         </h2>
         <div style={{ width: 60, height: 1, background: `linear-gradient(to right, ${C.gold}, transparent)`, margin: "1.5rem auto 0.75rem" }} />
         <p style={{ color: C.textLight, fontSize: "0.88rem", lineHeight: 1.8, maxWidth: 380, margin: "0 auto 3rem", fontFamily: "var(--body-font)" }}>Just 3 easy steps and your jewelry is on its way 🎀</p>
-        <div className="steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "2rem", position: "relative" }}>
+        <div className="steps-grid">
           <div className="steps-line" style={{ position: "absolute", top: "2.3rem", left: "17%", right: "17%", height: 1, background: `linear-gradient(to right, ${C.goldLight}, ${C.gold}, ${C.goldLight})` }} />
           {steps.map((s, i) => (
             <div key={i} data-id={`step${i}`} style={fadeStyle(`step${i}`, i * 0.15)}>

@@ -2,7 +2,7 @@ const C = {
   blush: "#f2c4ce", goldLight: "#e8d5a3", deepRose: "#9e5a6a",
   rose: "#c17d8a", gold: "#c9a84c", textLight: "#8a6870",
 };
-const INSTA_DM = "https://www.instagram.com/direct/t/18190311574339120/";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 
 export default function Hero() {
   return (

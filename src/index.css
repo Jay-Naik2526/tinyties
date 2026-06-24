@@ -263,6 +263,71 @@ button {
   animation: toastSlideOut 0.4s ease forwards;
 }
 
+/* ===== GRID & VISUAL LAYOUTS ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+  height: 420px;
+}
+
+.about-visual > div:first-child {
+  position: absolute;
+  width: 72%;
+  height: 340px;
+  top: 0;
+  left: 0;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, var(--soft-pink), var(--blush));
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-visual > div:nth-child(2) {
+  position: absolute;
+  width: 52%;
+  height: 190px;
+  bottom: 0;
+  right: 0;
+  border-radius: 2rem;
+  border: 2px solid var(--gold-light);
+  background: var(--cream);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  max-width: 860px;
+  margin: 2.5rem auto;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 /* ===== RESPONSIVE BREAKPOINTS ===== */
 
 /* Tablet */
