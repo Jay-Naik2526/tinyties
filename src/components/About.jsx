@@ -8,8 +8,12 @@ export default function About({ fadeStyle }) {
     <section id="about" className="section-padding" aria-label="About Tiny Ties" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto" }}>
       <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }} data-id="about">
         <div className="about-visual" style={{ position: "relative", height: 420, ...fadeStyle("about", 0) }} aria-hidden="true">
-          <div style={{ position: "absolute", width: "72%", height: 340, top: 0, left: 0, borderRadius: "2rem", background: `linear-gradient(135deg, ${C.softPink}, ${C.blush})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8rem" }}>🎀</div>
-          <div style={{ position: "absolute", width: "52%", height: 190, bottom: 0, right: 0, borderRadius: "2rem", border: `2px solid ${C.goldLight}`, background: C.cream, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "5rem" }}>📿</div>
+          <div style={{ position: "absolute", width: "72%", height: 340, top: 0, left: 0, borderRadius: "2rem", background: `linear-gradient(135deg, ${C.softPink}, ${C.blush})`, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img src="/images/friendship-bracelet.jpeg" alt="Handmade friendship bracelets" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          </div>
+          <div style={{ position: "absolute", width: "52%", height: 190, bottom: 0, right: 0, borderRadius: "2rem", border: `2px solid ${C.goldLight}`, background: C.cream, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img src="/images/sunshine.jpeg" alt="Sunshine beaded bracelet" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          </div>
           <div style={{ position: "absolute", width: 110, height: 110, borderRadius: "50%", border: `1.5px solid ${C.gold}`, opacity: 0.5, top: -15, right: 15 }} />
           <div style={{ position: "absolute", width: 75, height: 75, borderRadius: "50%", border: `1.5px solid ${C.gold}`, opacity: 0.4, bottom: 25, left: -15 }} />
         </div>

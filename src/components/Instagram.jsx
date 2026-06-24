@@ -1,12 +1,12 @@
 const C = { deepRose: "#9e5a6a", gold: "#c9a84c", textLight: "#8a6870", softPink: "#faeef1" };
 
 const grid = [
-  { emoji: "🎀", bg: ["#faeef1", "#f2c4ce"] },
-  { emoji: "💛", bg: ["#fdf3e8", "#e8d5a3"] },
-  { emoji: "💍", bg: ["#f0eef8", "#d4c4e8"] },
-  { emoji: "🌸", bg: ["#eef8f0", "#c4e8cc"] },
-  { emoji: "✨", bg: ["#f2c4ce", "#c17d8a"] },
-  { emoji: "🧿", bg: ["#e8d5a3", "#c9a84c"] },
+  "/images/friendship-bracelet.jpeg",
+  "/images/star-wars-1.jpeg",
+  "/images/evil-eye.jpeg",
+  "/images/sunshine.jpeg",
+  "/images/sea-range-2.jpeg",
+  "/images/solid-stack-bracelet.jpeg",
 ];
 
 export default function Instagram({ fadeStyle }) {
@@ -19,8 +19,10 @@ export default function Instagram({ fadeStyle }) {
         </h2>
         <div style={{ width: 60, height: 1, background: `linear-gradient(to right, ${C.gold}, transparent)`, margin: "1.5rem auto" }} />
         <div className="insta-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: "0.5rem", maxWidth: 860, margin: "2.5rem auto" }}>
-          {grid.map((t, i) => (
-            <div key={i} className="insta-tile" style={{ aspectRatio: "1", borderRadius: "0.75rem", background: `linear-gradient(135deg, ${t.bg[0]}, ${t.bg[1]})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.2rem", cursor: "pointer", transition: "transform 0.3s, opacity 0.3s" }}>{t.emoji}</div>
+          {grid.map((src, i) => (
+            <div key={i} className="insta-tile" style={{ aspectRatio: "1", borderRadius: "0.75rem", overflow: "hidden", cursor: "pointer", transition: "transform 0.3s, opacity 0.3s" }}>
+              <img src={src} alt={`Tiny Ties Beaded Jewelry ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
           ))}
         </div>
         <a href="#" rel="noopener noreferrer"

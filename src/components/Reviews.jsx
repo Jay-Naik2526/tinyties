@@ -9,7 +9,7 @@ const reviews = [
   { stars: 5, text: "Ordered a custom bracelet for my bestie's birthday and she absolutely loved it. Quality is amazing for the price!", name: "Priya S.", loc: "Mumbai", emoji: "👧" },
   { stars: 5, text: "Got the friendship set for me and my roommate. We wear them every day. Super cute packaging too!", name: "Ananya R.", loc: "Delhi", emoji: "🌸" },
   { stars: 5, text: "Fast delivery, beautiful bracelet, so affordable. Will definitely order again for gifting!", name: "Shreya K.", loc: "Pune", emoji: "💖" },
-  { stars: 5, text: "The custom ring I ordered was exactly what I wanted. The color combination was perfect!", name: "Neha M.", loc: "Bangalore", emoji: "💍" },
+  { stars: 5, text: "The custom necklace I ordered was exactly what I wanted. The color combination was perfect!", name: "Neha M.", loc: "Bangalore", emoji: "📿" },
   { stars: 5, text: "Gifted matching bracelets to my sister and she cried happy tears. Tiny Ties made our bond even stronger!", name: "Riya P.", loc: "Jaipur", emoji: "🎀" },
 ];
 
