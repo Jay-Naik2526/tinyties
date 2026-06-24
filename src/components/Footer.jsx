@@ -3,7 +3,7 @@ import logoFooter from "../assets/logo-footer.png";
 const C = {
   gold: "#c9a84c", goldLight: "#e8d5a3", text: "#4a3035",
 };
-const INSTA_URL = "https://www.instagram.com/tiny._ties";
+const INSTA_URL = "https://www.instagram.com/tiny._ties/";
 
 const links = [
   ["About", "#about"], ["Shop", "#shop"], ["How to Order", "#order"],

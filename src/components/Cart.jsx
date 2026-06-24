@@ -9,7 +9,7 @@ const C = {
   softPink: "#faeef1",
 };
 
-const INSTA_DM = "https://ig.me/m/tiny._ties";
+const INSTA_DM = "https://www.instagram.com/direct/t/18190311574339120/";
 const FREE_SHIPPING_LIMIT = 200;
 const SHIPPING_FEE = 40;
 

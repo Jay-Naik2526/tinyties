@@ -6,8 +6,8 @@ const C = {
   textLight: "#8a6870", blush: "#f2c4ce",
 };
 
-const INSTA_URL = "https://www.instagram.com/tiny._ties";
-const INSTA_DM = "https://ig.me/m/tiny._ties";
+const INSTA_URL = "https://www.instagram.com/tiny._ties/";
+const INSTA_DM = "https://www.instagram.com/direct/t/18190311574339120/";
 
 const allLinks = [
   { label: "About", href: "#about" },

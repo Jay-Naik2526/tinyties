@@ -15,7 +15,7 @@ import BackToTop from "./components/BackToTop";
 import Cart from "./components/Cart";
 import QuickView from "./components/QuickView";
 
-const INSTA_DM = "https://ig.me/m/tiny._ties";
+const INSTA_DM = "https://www.instagram.com/direct/t/18190311574339120/";
 
 const marqueeItems = [
   "Handmade Bracelets ✦", "Custom Orders Open ✦", "Beaded Necklaces ✦",
