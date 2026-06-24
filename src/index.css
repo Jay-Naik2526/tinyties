@@ -80,9 +80,9 @@ button {
   100% { opacity: 0; }
 }
 
-@keyframes pulseWa {
-  0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); }
-  50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8), 0 0 0 8px rgba(37, 211, 102, 0.1); }
+@keyframes pulseInsta {
+  0%, 100% { box-shadow: 0 4px 20px rgba(220, 39, 108, 0.5); }
+  50% { box-shadow: 0 4px 30px rgba(220, 39, 108, 0.8), 0 0 0 8px rgba(220, 39, 108, 0.15); }
 }
 
 @keyframes heroFade {

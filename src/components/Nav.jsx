@@ -6,7 +6,8 @@ const C = {
   textLight: "#8a6870", blush: "#f2c4ce",
 };
 
-const WA = "https://wa.me/917888684081?text=Hi! I'd love to order from Tiny Ties 🎀";
+const INSTA_URL = "https://www.instagram.com/tiny._ties";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 
 const allLinks = [
   { label: "About", href: "#about" },
@@ -15,7 +16,7 @@ const allLinks = [
   { label: "How to Order", href: "#order" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
-  { label: "Instagram", href: "#", external: false },
+  { label: "Instagram", href: INSTA_URL, external: true },
 ];
 
 export default function Nav({ scrolled, cart = [], badgeAnimate, onCartClick }) {
@@ -79,7 +80,7 @@ export default function Nav({ scrolled, cart = [], badgeAnimate, onCartClick }) 
             )}
           </button>
 
-          <a href={WA} target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp" style={{
+          <a href={INSTA_DM} target="_blank" rel="noopener noreferrer" aria-label="Order on Instagram" style={{
             background: C.deepRose, color: "white",
             padding: "0.5rem 1.2rem", borderRadius: "2rem",
             fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase",
@@ -204,9 +205,9 @@ export default function Nav({ scrolled, cart = [], badgeAnimate, onCartClick }) 
               opacity: 0, animation: `overlayItemIn 0.4s ease ${0.15 + allLinks.length * 0.06}s forwards`,
             }} />
 
-            {/* WhatsApp CTA */}
+            {/* Instagram DM CTA */}
             <a
-              href={WA}
+              href={INSTA_DM}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
@@ -224,7 +225,7 @@ export default function Nav({ scrolled, cart = [], badgeAnimate, onCartClick }) 
               onMouseEnter={e => { e.target.style.transform = "scale(1.05)"; }}
               onMouseLeave={e => { e.target.style.transform = "scale(1)"; }}
             >
-              💬 Order on WhatsApp
+              💬 Order on Instagram DM
             </a>
 
             {/* Social hint */}

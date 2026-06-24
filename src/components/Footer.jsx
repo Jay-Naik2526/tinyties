@@ -3,13 +3,12 @@ import logoFooter from "../assets/logo-footer.png";
 const C = {
   gold: "#c9a84c", goldLight: "#e8d5a3", text: "#4a3035",
 };
-const WA = "https://wa.me/917888684081?text=Hi! I'd love to order from Tiny Ties 🎀";
+const INSTA_URL = "https://www.instagram.com/tiny._ties";
 
 const links = [
   ["About", "#about"], ["Shop", "#shop"], ["How to Order", "#order"],
   ["Reviews", "#reviews"], ["FAQ", "#faq"],
-  ["Instagram", "#"],
-  ["WhatsApp", WA],
+  ["Instagram", INSTA_URL],
 ];
 
 export default function Footer() {

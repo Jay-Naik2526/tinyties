@@ -6,7 +6,7 @@ const C = {
 };
 
 const faqs = [
-  { q: "How do I order from Tiny Ties?", a: "Simply browse our collection, DM us on Instagram or WhatsApp with what you love. We'll confirm your order, customize if needed, share UPI payment details, and handcraft your piece fresh for delivery." },
+  { q: "How do I order from Tiny Ties?", a: "Simply browse our collection, DM us on Instagram with what you love. We'll confirm your order, customize if needed, share UPI payment details, and handcraft your piece fresh for delivery." },
   { q: "Can I customize my jewelry?", a: "Absolutely! Custom orders are our favorite. Pick your colors, beads, charms, and size — we'll make it exactly the way you imagine. Just DM us with your ideas." },
   { q: "What are the prices?", a: "Our pieces start at just ₹49 for beaded bracelets and ₹129 for necklaces. Custom pieces are priced based on materials and complexity." },
   { q: "How long does delivery take?", a: "Since every piece is handmade to order, it typically takes 3-5 days to craft and ship. Delivery usually arrives within 5-7 business days across India." },

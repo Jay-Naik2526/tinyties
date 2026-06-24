@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const C = {
   deepRose: "#9e5a6a",
@@ -9,11 +9,13 @@ const C = {
   softPink: "#faeef1",
 };
 
-const WA_NUM = "917888684081";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 const FREE_SHIPPING_LIMIT = 200;
 const SHIPPING_FEE = 40;
 
 export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFromCart, updateItemSize }) {
+  const [checkoutStatus, setCheckoutStatus] = useState("idle");
+
   // Close drawer on Escape key
   useEffect(() => {
     const handleEsc = (e) => {
@@ -45,17 +47,26 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
     let orderText = `Hi Tiny Ties! 🎀 I'd love to place an order for the following items:\n\n`;
     
     cart.forEach(item => {
-      orderText += `• *${item.quantity}x ${item.name}* (Size: ${item.size}) - ₹${item.priceNum * item.quantity}\n`;
+      orderText += `• ${item.quantity}x ${item.name} (Size: ${item.size}) - ₹${item.priceNum * item.quantity}\n`;
     });
 
-    orderText += `\n*Subtotal:* ₹${subtotal}`;
-    orderText += `\n*Shipping:* ${isFreeShipping ? "FREE" : `₹${SHIPPING_FEE}`}`;
-    orderText += `\n*Total Order Value:* ₹${total}\n\n`;
+    orderText += `\nSubtotal: ₹${subtotal}`;
+    orderText += `\nShipping: ${isFreeShipping ? "FREE" : `₹${SHIPPING_FEE}`}`;
+    orderText += `\nTotal Order Value: ₹${total}\n\n`;
     orderText += `Please confirm my order and share payment/UPI details! 💖`;
 
-    const encodedText = encodeURIComponent(orderText);
-    const waUrl = `https://wa.me/${WA_NUM}?text=${encodedText}`;
-    window.open(waUrl, "_blank", "noopener,noreferrer");
+    navigator.clipboard.writeText(orderText)
+      .then(() => {
+        setCheckoutStatus("copied");
+        setTimeout(() => {
+          setCheckoutStatus("idle");
+        }, 4000);
+        window.open(INSTA_DM, "_blank", "noopener,noreferrer");
+      })
+      .catch((err) => {
+        console.error("Failed to copy order details: ", err);
+        window.open(INSTA_DM, "_blank", "noopener,noreferrer");
+      });
   };
 
   return (
@@ -334,9 +345,14 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
                 gap: "0.4rem",
               }}
             >
-              💬 Place Order on WhatsApp
+              {checkoutStatus === "copied" ? "✨ Order Copied! Opening Instagram..." : "💬 Place Order on Instagram DM"}
             </button>
             <p style={{ textAlign: "center", fontSize: "0.62rem", color: C.textLight, marginTop: "0.75rem", fontFamily: "var(--body-font)", letterSpacing: "0.02em" }}>
+              {checkoutStatus === "copied" 
+                ? "✨ Order details copied to clipboard! Just paste it in the DM."
+                : "Order summary will be copied to your clipboard. Paste it in the Instagram DM."}
+            </p>
+            <p style={{ textAlign: "center", fontSize: "0.62rem", color: C.textLight, marginTop: "0.4rem", fontFamily: "var(--body-font)", letterSpacing: "0.02em" }}>
               Handcrafting takes 3-5 days. Payments are collected via UPI.
             </p>
           </div>

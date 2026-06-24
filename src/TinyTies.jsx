@@ -15,7 +15,7 @@ import BackToTop from "./components/BackToTop";
 import Cart from "./components/Cart";
 import QuickView from "./components/QuickView";
 
-const WA = "https://wa.me/917888684081?text=Hi! I'd love to order from Tiny Ties 🎀";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 
 const marqueeItems = [
   "Handmade Bracelets ✦", "Custom Orders Open ✦", "Beaded Necklaces ✦",
@@ -146,15 +146,16 @@ export default function TinyTies() {
 
       <Footer />
 
-      {/* Floating WhatsApp */}
-      <a href={WA} target="_blank" rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
+      {/* Floating Instagram DM */}
+      <a href={INSTA_DM} target="_blank" rel="noopener noreferrer"
+        aria-label="Chat with us on Instagram DM"
         style={{
           position: "fixed", bottom: "2rem", right: "2rem", zIndex: 200,
-          width: 56, height: 56, borderRadius: "50%", background: "#25D366",
+          width: 56, height: 56, borderRadius: "50%",
+          background: "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 20px rgba(37,211,102,0.5)",
-          animation: "pulseWa 3s ease-in-out infinite", fontSize: "1.8rem",
+          boxShadow: "0 4px 20px rgba(220,39,108,0.4)",
+          animation: "pulseInsta 3s ease-in-out infinite", fontSize: "1.8rem",
         }}>
         💬
       </a>

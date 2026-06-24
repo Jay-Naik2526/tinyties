@@ -2,7 +2,7 @@ const C = {
   blush: "#f2c4ce", goldLight: "#e8d5a3", deepRose: "#9e5a6a",
   rose: "#c17d8a", gold: "#c9a84c", textLight: "#8a6870",
 };
-const WA = "https://wa.me/917888684081?text=Hi! I'd love to order from Tiny Ties 🎀";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 
 export default function Hero() {
   return (
@@ -35,7 +35,7 @@ export default function Hero() {
           <a href="#shop" className="btn-primary" style={{ background: C.deepRose, color: "white", padding: "0.9rem 2.2rem", borderRadius: "3rem", fontSize: "0.78rem", letterSpacing: "0.15em", textTransform: "uppercase", transition: "all 0.3s", boxShadow: "0 4px 20px rgba(158,90,106,0.3)", fontFamily: "var(--body-font)" }}>
             Shop Collection
           </a>
-          <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ border: `1.5px solid ${C.deepRose}`, color: C.deepRose, padding: "0.9rem 2.2rem", borderRadius: "3rem", fontSize: "0.78rem", letterSpacing: "0.15em", textTransform: "uppercase", transition: "all 0.3s", fontFamily: "var(--body-font)" }}>
+          <a href={INSTA_DM} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ border: `1.5px solid ${C.deepRose}`, color: C.deepRose, padding: "0.9rem 2.2rem", borderRadius: "3rem", fontSize: "0.78rem", letterSpacing: "0.15em", textTransform: "uppercase", transition: "all 0.3s", fontFamily: "var(--body-font)" }}>
             DM to Order
           </a>
         </div>

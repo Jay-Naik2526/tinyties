@@ -1,5 +1,5 @@
 const C = { deepRose: "#9e5a6a", goldLight: "#e8d5a3" };
-const WA = "https://wa.me/917888684081?text=Hi! I want a custom order at Tiny Ties 💕";
+const INSTA_DM = "https://ig.me/m/tiny._ties";
 
 export default function CustomCTA({ fadeStyle }) {
   return (
@@ -14,7 +14,7 @@ export default function CustomCTA({ fadeStyle }) {
         <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.95rem", lineHeight: 1.8, marginBottom: "2rem", fontFamily: "var(--body-font)" }}>
           Pick your colors, beads, charms, and size. We'll make it exactly the way you imagine. Custom orders are our favorite 🎀
         </p>
-        <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-gold" aria-label="Request custom order on WhatsApp"
+        <a href={INSTA_DM} target="_blank" rel="noopener noreferrer" className="btn-gold" aria-label="Request custom order on Instagram DM"
           style={{ background: "#c9a84c", color: "white", padding: "1rem 2.5rem", borderRadius: "3rem", fontSize: "0.78rem", letterSpacing: "0.15em", textTransform: "uppercase", transition: "all 0.3s", display: "inline-block", boxShadow: "0 4px 20px rgba(201,168,76,0.4)", fontFamily: "var(--body-font)" }}>
           Request Custom Order
         </a>

@@ -129,7 +129,7 @@ export default function Shop({ fadeStyle, addToCart, onQuickView }) {
           Shop <em>Tiny Ties</em>
         </h2>
         <div style={{ width: 60, height: 1, background: `linear-gradient(to right, ${C.gold}, transparent)`, margin: "1.5rem auto" }} />
-        <p style={{ color: C.textLight, fontSize: "0.88rem", lineHeight: 1.8, fontFamily: "var(--body-font)" }}>Each piece is handmade. DM us on Instagram or WhatsApp to place your order.</p>
+        <p style={{ color: C.textLight, fontSize: "0.88rem", lineHeight: 1.8, fontFamily: "var(--body-font)" }}>Each piece is handmade. DM us on Instagram to place your order.</p>
       </div>
 
       {/* Category Filters */}

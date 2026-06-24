@@ -3,7 +3,7 @@ const C = {
 };
 
 const steps = [
-  { n: "1", title: "Pick & DM", desc: "Browse our collection. DM on Instagram or WhatsApp with what you love." },
+  { n: "1", title: "Pick & DM", desc: "Browse our collection. DM on Instagram with what you love." },
   { n: "2", title: "Confirm & Pay", desc: "We confirm your order, customize if needed, and share UPI payment details." },
   { n: "3", title: "Made & Delivered", desc: "Your piece is handmade fresh for you and delivered with love." },
 ];
