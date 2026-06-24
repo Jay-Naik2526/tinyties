@@ -305,6 +305,12 @@ button {
   justify-content: center;
 }
 
+/* Decorative gold circles */
+.about-visual > div:nth-child(3),
+.about-visual > div:nth-child(4) {
+  display: block;
+}
+
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -336,11 +342,34 @@ button {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
   }
-  
+
+  /* On tablet/mobile: switch from absolute layout to side-by-side images */
   .about-visual {
-    height: 300px !important;
-    max-width: 400px;
-    margin: 0 auto;
+    height: auto !important;
+    display: flex !important;
+    gap: 0.75rem !important;
+    max-width: 100% !important;
+    margin: 0 0 2rem !important;
+  }
+
+  .about-visual > div:first-child {
+    position: static !important;
+    width: 60% !important;
+    height: 220px !important;
+    flex-shrink: 0;
+  }
+
+  .about-visual > div:nth-child(2) {
+    position: static !important;
+    width: 38% !important;
+    height: 220px !important;
+    flex-shrink: 0;
+  }
+
+  /* Hide decorative circles on tablet/mobile */
+  .about-visual > div:nth-child(3),
+  .about-visual > div:nth-child(4) {
+    display: none !important;
   }
 
   .steps-grid {
@@ -390,20 +419,14 @@ button {
     display: none !important;
   }
   
-  .about-visual {
-    height: 240px !important;
-  }
-  
   .about-visual > div:first-child {
-    width: 65% !important;
-    height: 200px !important;
-    font-size: 5rem !important;
+    width: 58% !important;
+    height: 180px !important;
   }
-  
+
   .about-visual > div:nth-child(2) {
-    width: 45% !important;
-    height: 140px !important;
-    font-size: 3.5rem !important;
+    width: 40% !important;
+    height: 180px !important;
   }
   
   .stats-row {

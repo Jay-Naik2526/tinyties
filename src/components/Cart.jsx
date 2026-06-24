@@ -14,7 +14,9 @@ const FREE_SHIPPING_LIMIT = 200;
 const SHIPPING_FEE = 40;
 
 export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFromCart, updateItemSize }) {
-  const [checkoutStatus, setCheckoutStatus] = useState("idle");
+  const [showOrderModal, setShowOrderModal] = useState(false);
+  const [orderText, setOrderText] = useState("");
+  const [copied, setCopied] = useState(false);
 
   // Close drawer on Escape key
   useEffect(() => {
@@ -44,29 +46,30 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
   const progressPercent = Math.min((subtotal / FREE_SHIPPING_LIMIT) * 100, 100);
 
   const handleCheckout = () => {
-    let orderText = `Hi Tiny Ties! 🎀 I'd love to place an order for the following items:\n\n`;
-    
+    let text = `Hi Tiny Ties! 🎀 I'd love to place an order:\n\n`;
     cart.forEach(item => {
-      orderText += `• ${item.quantity}x ${item.name} (Size: ${item.size}) - ₹${item.priceNum * item.quantity}\n`;
+      text += `• ${item.quantity}x ${item.name} (Size: ${item.size}) — ₹${item.priceNum * item.quantity}\n`;
     });
+    text += `\nSubtotal: ₹${subtotal}`;
+    text += `\nShipping: ${isFreeShipping ? "FREE 🎉" : `₹${SHIPPING_FEE}`}`;
+    text += `\nTotal: ₹${total}\n\n`;
+    text += `Please confirm and share UPI payment details! 💖`;
+    setOrderText(text);
+    setShowOrderModal(true);
+    setCopied(false);
+  };
 
-    orderText += `\nSubtotal: ₹${subtotal}`;
-    orderText += `\nShipping: ${isFreeShipping ? "FREE" : `₹${SHIPPING_FEE}`}`;
-    orderText += `\nTotal Order Value: ₹${total}\n\n`;
-    orderText += `Please confirm my order and share payment/UPI details! 💖`;
+  const handleCopy = () => {
+    navigator.clipboard.writeText(orderText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    }).catch(() => {
+      // fallback: select text
+    });
+  };
 
-    navigator.clipboard.writeText(orderText)
-      .then(() => {
-        setCheckoutStatus("copied");
-        setTimeout(() => {
-          setCheckoutStatus("idle");
-        }, 4000);
-        window.open(INSTA_DM, "_blank", "noopener,noreferrer");
-      })
-      .catch((err) => {
-        console.error("Failed to copy order details: ", err);
-        window.open(INSTA_DM, "_blank", "noopener,noreferrer");
-      });
+  const handleOpenInstagram = () => {
+    window.open(INSTA_DM, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -345,19 +348,150 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
                 gap: "0.4rem",
               }}
             >
-              {checkoutStatus === "copied" ? "✨ Order Copied! Opening Instagram..." : "💬 Place Order on Instagram DM"}
+              💬 Place Order via Instagram DM
             </button>
             <p style={{ textAlign: "center", fontSize: "0.62rem", color: C.textLight, marginTop: "0.75rem", fontFamily: "var(--body-font)", letterSpacing: "0.02em" }}>
-              {checkoutStatus === "copied" 
-                ? "✨ Order details copied to clipboard! Just paste it in the DM."
-                : "Order summary will be copied to your clipboard. Paste it in the Instagram DM."}
-            </p>
-            <p style={{ textAlign: "center", fontSize: "0.62rem", color: C.textLight, marginTop: "0.4rem", fontFamily: "var(--body-font)", letterSpacing: "0.02em" }}>
-              Handcrafting takes 3-5 days. Payments are collected via UPI.
+              Handcrafting takes 3–5 days · Payments via UPI
             </p>
           </div>
         )}
       </div>
+
+      {/* ===== ORDER PREVIEW MODAL ===== */}
+      {showOrderModal && (
+        <>
+          {/* Backdrop */}
+          <div
+            onClick={() => setShowOrderModal(false)}
+            style={{
+              position: "fixed", inset: 0,
+              background: "rgba(74,48,53,0.55)",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              zIndex: 500,
+            }}
+          />
+          {/* Modal box */}
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Order preview"
+            style={{
+              position: "fixed",
+              top: "50%", left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 510,
+              background: "white",
+              borderRadius: "1.5rem",
+              padding: "2rem 1.75rem 1.75rem",
+              maxWidth: 420,
+              width: "calc(100vw - 2rem)",
+              boxShadow: "0 20px 60px rgba(74,48,53,0.25)",
+              fontFamily: "var(--body-font)",
+            }}
+          >
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ fontSize: "1.4rem" }}>🎀</span>
+                <h3 style={{ fontFamily: "var(--heading-font)", fontSize: "1.1rem", color: C.text, fontWeight: 400, margin: 0 }}>
+                  Your Order
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowOrderModal(false)}
+                aria-label="Close order preview"
+                style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.2rem", color: C.textLight, lineHeight: 1 }}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Instruction */}
+            <p style={{ fontSize: "0.75rem", color: C.textLight, marginBottom: "1rem", lineHeight: 1.6 }}>
+              Copy this message and paste it in our Instagram DM:
+            </p>
+
+            {/* Order message box */}
+            <div
+              style={{
+                background: C.softPink,
+                border: `1px solid ${C.goldLight}`,
+                borderRadius: "1rem",
+                padding: "1rem 1.2rem",
+                fontSize: "0.78rem",
+                color: C.text,
+                lineHeight: 1.8,
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+                maxHeight: 220,
+                overflowY: "auto",
+                marginBottom: "1.25rem",
+                fontFamily: "var(--body-font)",
+              }}
+            >
+              {orderText}
+            </div>
+
+            {/* Copy button */}
+            <button
+              onClick={handleCopy}
+              style={{
+                width: "100%",
+                background: copied ? "#4CAF50" : C.goldLight,
+                color: copied ? "white" : C.text,
+                border: "none",
+                borderRadius: "2rem",
+                padding: "0.75rem",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                transition: "all 0.3s",
+                fontFamily: "var(--body-font)",
+                marginBottom: "0.75rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.4rem",
+              }}
+            >
+              {copied ? "✅ Copied!" : "📋 Copy Message"}
+            </button>
+
+            {/* Instagram DM button */}
+            <button
+              onClick={handleOpenInstagram}
+              className="btn-shimmer"
+              style={{
+                width: "100%",
+                background: "linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)",
+                color: "white",
+                border: "none",
+                borderRadius: "2rem",
+                padding: "0.85rem",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                fontFamily: "var(--body-font)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+              }}
+            >
+              📸 Open Instagram DM
+            </button>
+
+            <p style={{ textAlign: "center", fontSize: "0.6rem", color: C.textLight, marginTop: "0.9rem", lineHeight: 1.6 }}>
+              Copy the message first → then open DM → paste &amp; send!
+            </p>
+          </div>
+        </>
+      )}
     </>
   );
 }
