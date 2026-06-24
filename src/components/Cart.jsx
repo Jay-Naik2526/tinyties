@@ -10,8 +10,7 @@ const C = {
 };
 
 const INSTA_DM = "https://ig.me/m/tiny._ties";
-const FREE_SHIPPING_LIMIT = 200;
-const SHIPPING_FEE = 40;
+
 
 export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFromCart, updateItemSize }) {
   const [showOrderModal, setShowOrderModal] = useState(false);
@@ -40,20 +39,16 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
   }, [isOpen]);
 
   const subtotal = cart.reduce((sum, item) => sum + item.priceNum * item.quantity, 0);
-  const isFreeShipping = subtotal >= FREE_SHIPPING_LIMIT;
-  const shippingCharge = cart.length === 0 ? 0 : (isFreeShipping ? 0 : SHIPPING_FEE);
-  const total = subtotal + shippingCharge;
-  const progressPercent = Math.min((subtotal / FREE_SHIPPING_LIMIT) * 100, 100);
+
 
   const handleCheckout = () => {
     let text = `Hi Tiny Ties! 🎀 I'd love to place an order:\n\n`;
     cart.forEach(item => {
       text += `• ${item.quantity}x ${item.name} (Size: ${item.size}) — ₹${item.priceNum * item.quantity}\n`;
     });
-    text += `\nSubtotal: ₹${subtotal}`;
-    text += `\nShipping: ${isFreeShipping ? "FREE 🎉" : `₹${SHIPPING_FEE}`}`;
-    text += `\nTotal: ₹${total}\n\n`;
-    text += `Please confirm and share UPI payment details! 💖`;
+    text += `\nItems Total: ₹${subtotal} (excl. shipping)\n`;
+    text += `Shipping charges to be confirmed.\n\n`;
+    text += `Please confirm my order and share the shipping charges + UPI payment details! 💖`;
     setOrderText(text);
     setShowOrderModal(true);
     setCopied(false);
@@ -137,29 +132,6 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
           </button>
         </div>
 
-        {/* Free Shipping Tracker */}
-        {cart.length > 0 && (
-          <div style={{ padding: "1.2rem 1.75rem", background: "#fdf8f5", borderBottom: "1px solid rgba(232,213,163,0.2)" }}>
-            <div style={{ fontSize: "0.78rem", color: C.text, fontFamily: "var(--body-font)", marginBottom: "0.5rem" }}>
-              {isFreeShipping ? (
-                <span>🎉 Yay! You've unlocked <strong>FREE SHIPPING!</strong></span>
-              ) : (
-                <span>You are just <strong>₹{FREE_SHIPPING_LIMIT - subtotal}</strong> away from <strong>FREE SHIPPING!</strong></span>
-              )}
-            </div>
-            <div style={{ width: "100%", height: 6, background: "#faeef1", borderRadius: 3, overflow: "hidden" }}>
-              <div
-                style={{
-                  width: `${progressPercent}%`,
-                  height: "100%",
-                  background: C.deepRose,
-                  borderRadius: 3,
-                  transition: "width 0.4s ease-out",
-                }}
-              />
-            </div>
-          </div>
-        )}
 
         {/* Items List */}
         <div
@@ -310,18 +282,19 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
               background: "white",
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem", marginBottom: "1.2rem" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem", color: C.textLight, fontFamily: "var(--body-font)" }}>
-                <span>Subtotal</span>
-                <span>₹{subtotal}</span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1.2rem" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "1rem", color: C.text, fontWeight: 500, fontFamily: "var(--body-font)" }}>
+                <span>Items Total</span>
+                <span style={{ color: C.deepRose, fontWeight: 600 }}>₹{subtotal}</span>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem", color: C.textLight, fontFamily: "var(--body-font)" }}>
-                <span>Shipping</span>
-                <span>{isFreeShipping ? "FREE" : `₹${SHIPPING_FEE}`}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "1.05rem", color: C.text, fontWeight: 500, fontFamily: "var(--body-font)", borderTop: "1px dashed rgba(232,213,163,0.3)", paddingTop: "0.6rem" }}>
-                <span>Total Order Value</span>
-                <span style={{ color: C.deepRose, fontWeight: 600 }}>₹{total}</span>
+              <div style={{
+                display: "flex", alignItems: "flex-start", gap: "0.4rem",
+                background: "#fff8e7", border: "1px dashed #e8d5a3",
+                borderRadius: "0.75rem", padding: "0.6rem 0.85rem",
+                fontSize: "0.72rem", color: C.textLight, fontFamily: "var(--body-font)", lineHeight: 1.5,
+              }}>
+                <span style={{ fontSize: "0.9rem", flexShrink: 0 }}>📦</span>
+                <span>Prices are <strong>exclusive of shipping.</strong> DM us to know exact shipping charges for your location.</span>
               </div>
             </div>
 
