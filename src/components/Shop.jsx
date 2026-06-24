@@ -102,7 +102,7 @@ const products = [
   }
 ];
 
-export default function Shop({ fadeStyle }) {
+export default function Shop({ fadeStyle, addToCart, onQuickView }) {
   const [activeCat, setActiveCat] = useState("All");
   const filtered = activeCat === "All" ? products : products.filter(p => p.cat === activeCat);
 
@@ -142,23 +142,28 @@ export default function Shop({ fadeStyle }) {
           <article key={p.name} className="product-card" data-id={`p${i}`}
             itemScope itemType="https://schema.org/Product"
             style={{ background: "white", borderRadius: "1.5rem", overflow: "hidden", transition: "transform 0.3s, box-shadow 0.3s", boxShadow: "0 2px 20px rgba(158,90,106,0.08)", ...fadeStyle(`p${i}`, i * 0.08) }}>
-            <div style={{ height: 260, background: "#fdf8f5", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
+            <div style={{ height: 260, background: "#fdf8f5", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", cursor: "pointer" }} onClick={() => onQuickView(p)}>
               {p.badge && <span style={{ position: "absolute", top: "0.8rem", left: "0.8rem", background: C.deepRose, color: "white", fontSize: "0.58rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.2rem 0.7rem", borderRadius: "2rem", zIndex: 2 }}>{p.badge}</span>}
               <img src={p.image} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} className="product-image" />
             </div>
             <div style={{ padding: "1.25rem 1.5rem 1.5rem" }}>
-              <h3 itemProp="name" style={{ fontFamily: "var(--heading-font)", fontSize: "1.15rem", color: C.text, marginBottom: "0.35rem", fontWeight: 400 }}>{p.name}</h3>
-              <p itemProp="description" style={{ fontSize: "0.78rem", color: C.textLight, lineHeight: 1.6, marginBottom: "1rem", fontFamily: "var(--body-font)", minHeight: "3.2rem" }}>{p.desc}</p>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
+              <div style={{ cursor: "pointer" }} onClick={() => onQuickView(p)}>
+                <h3 itemProp="name" style={{ fontFamily: "var(--heading-font)", fontSize: "1.15rem", color: C.text, marginBottom: "0.35rem", fontWeight: 400 }}>{p.name}</h3>
+                <p itemProp="description" style={{ fontSize: "0.78rem", color: C.textLight, lineHeight: 1.6, marginBottom: "1rem", fontFamily: "var(--body-font)", minHeight: "3.2rem" }}>{p.desc}</p>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
+                <div itemProp="offers" itemScope itemType="https://schema.org/Offer" style={{ display: "flex", alignItems: "baseline", gap: "0.25rem" }}>
                   <span itemProp="price" content={p.priceNum} style={{ fontFamily: "var(--heading-font)", fontSize: "1.3rem", color: C.deepRose, fontWeight: 600 }}>{p.price}</span>
                   <meta itemProp="priceCurrency" content="INR" />
                 </div>
-                <a href={`https://wa.me/${WA_NUM}?text=Hi! I want to order the ${p.name} 🎀`} target="_blank" rel="noopener noreferrer" className="order-btn"
-                  aria-label={`Order ${p.name} on WhatsApp`}
-                  style={{ background: C.deepRose, color: "white", padding: "0.5rem 1.1rem", borderRadius: "2rem", fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", transition: "background 0.3s", fontFamily: "var(--body-font)" }}>
-                  Order
-                </a>
+                <div style={{ display: "flex", gap: "0.5rem", width: "100%" }}>
+                  <button onClick={() => onQuickView(p)} aria-label={`View details of ${p.name}`} style={{ flex: 1, border: `1.5px solid ${C.deepRose}`, color: C.deepRose, background: "none", padding: "0.5rem 0", borderRadius: "2rem", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", transition: "all 0.3s", fontFamily: "var(--body-font)", cursor: "pointer" }} onMouseEnter={e => { e.target.style.background = C.softPink; }} onMouseLeave={e => { e.target.style.background = "none"; }}>
+                    Details
+                  </button>
+                  <button onClick={() => addToCart(p, "M")} className="btn-shimmer" aria-label={`Add ${p.name} to cart`} style={{ flex: 1.4, background: C.deepRose, color: "white", padding: "0.5rem 0", borderRadius: "2rem", fontSize: "0.68rem", letterSpacing: "0.08em", textTransform: "uppercase", transition: "background 0.3s", fontFamily: "var(--body-font)", cursor: "pointer", border: "none" }}>
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
           </article>

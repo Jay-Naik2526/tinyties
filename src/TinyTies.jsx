@@ -12,11 +12,13 @@ import Instagram from "./components/Instagram";
 import Footer from "./components/Footer";
 import SocialProof from "./components/SocialProof";
 import BackToTop from "./components/BackToTop";
+import Cart from "./components/Cart";
+import QuickView from "./components/QuickView";
 
 const WA = "https://wa.me/917888684081?text=Hi! I'd love to order from Tiny Ties 🎀";
 
 const marqueeItems = [
-  "Handmade Bracelets ✦", "Custom Orders Open ✦", "Beaded Rings ✦",
+  "Handmade Bracelets ✦", "Custom Orders Open ✦", "Beaded Necklaces ✦",
   "Friendship Bracelets ✦", "Handmade with Heart ✦", "Gift for Her ✦",
   "Free Shipping 200+ ✦", "Made in India ✦",
 ];
@@ -24,6 +26,10 @@ const marqueeItems = [
 export default function TinyTies() {
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState({});
+  const [cart, setCart] = useState([]);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const [badgeAnimate, setBadgeAnimate] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -42,6 +48,66 @@ export default function TinyTies() {
     return () => observer.disconnect();
   }, []);
 
+  const addToCart = (product, size = "M") => {
+    setCart((prevCart) => {
+      const existingIdx = prevCart.findIndex(
+        (item) => item.name === product.name && item.size === size
+      );
+      if (existingIdx > -1) {
+        const newCart = [...prevCart];
+        newCart[existingIdx] = {
+          ...newCart[existingIdx],
+          quantity: newCart[existingIdx].quantity + 1,
+        };
+        return newCart;
+      }
+      return [...prevCart, { ...product, size, quantity: 1 }];
+    });
+    // Trigger cart badge animation bounce
+    setBadgeAnimate(true);
+    setTimeout(() => setBadgeAnimate(false), 300);
+  };
+
+  const removeFromCart = (name, size) => {
+    setCart((prevCart) => prevCart.filter((item) => !(item.name === name && item.size === size)));
+  };
+
+  const updateQuantity = (name, size, delta) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) => {
+          if (item.name === name && item.size === size) {
+            const nextQty = item.quantity + delta;
+            return { ...item, quantity: nextQty };
+          }
+          return item;
+        })
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  const updateItemSize = (name, oldSize, newSize) => {
+    if (oldSize === newSize) return;
+    setCart((prevCart) => {
+      const itemToMoveIdx = prevCart.findIndex((item) => item.name === name && item.size === oldSize);
+      if (itemToMoveIdx === -1) return prevCart;
+
+      const itemToMove = prevCart[itemToMoveIdx];
+      const otherItems = prevCart.filter((_, idx) => idx !== itemToMoveIdx);
+
+      const existingNewSizeIdx = otherItems.findIndex((item) => item.name === name && item.size === newSize);
+      if (existingNewSizeIdx > -1) {
+        otherItems[existingNewSizeIdx] = {
+          ...otherItems[existingNewSizeIdx],
+          quantity: otherItems[existingNewSizeIdx].quantity + itemToMove.quantity,
+        };
+        return otherItems;
+      }
+
+      return [...otherItems, { ...itemToMove, size: newSize }];
+    });
+  };
+
   const fadeStyle = (id, delay = 0) => ({
     opacity: visible[id] ? 1 : 0,
     transform: visible[id] ? "translateY(0)" : "translateY(32px)",
@@ -54,7 +120,7 @@ export default function TinyTies() {
       {/* Skip Navigation (Accessibility) */}
       <a href="#main-content" className="skip-nav">Skip to main content</a>
 
-      <Nav scrolled={scrolled} />
+      <Nav scrolled={scrolled} cart={cart} badgeAnimate={badgeAnimate} onCartClick={() => setCartOpen(true)} />
 
       <main id="main-content">
         <Hero />
@@ -69,7 +135,7 @@ export default function TinyTies() {
         </div>
 
         <About fadeStyle={fadeStyle} />
-        <Shop fadeStyle={fadeStyle} />
+        <Shop fadeStyle={fadeStyle} addToCart={addToCart} onQuickView={setQuickViewProduct} />
         <HowToOrder fadeStyle={fadeStyle} />
         <CustomCTA fadeStyle={fadeStyle} />
         <SizeGuide fadeStyle={fadeStyle} />
@@ -95,6 +161,22 @@ export default function TinyTies() {
 
       <BackToTop />
       <SocialProof />
+
+      {/* Cart side panel and Quick View Modal */}
+      <Cart
+        cart={cart}
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+        updateQuantity={updateQuantity}
+        removeFromCart={removeFromCart}
+        updateItemSize={updateItemSize}
+      />
+
+      <QuickView
+        product={quickViewProduct}
+        onClose={() => setQuickViewProduct(null)}
+        addToCart={addToCart}
+      />
     </div>
   );
 }

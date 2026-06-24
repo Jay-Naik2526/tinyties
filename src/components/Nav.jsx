@@ -18,7 +18,7 @@ const allLinks = [
   { label: "Instagram", href: "#", external: false },
 ];
 
-export default function Nav({ scrolled }) {
+export default function Nav({ scrolled, cart = [], badgeAnimate, onCartClick }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Lock body scroll when menu is open
@@ -63,6 +63,22 @@ export default function Nav({ scrolled }) {
               {l}
             </a>
           ))}
+
+          {/* Cart Icon Button */}
+          <button onClick={onCartClick} aria-label="Open Shopping Cart" style={{ position: "relative", cursor: "pointer", display: "flex", alignItems: "center", padding: "0.4rem 0.6rem", transition: "color 0.3s" }}>
+            <span style={{ fontSize: "1.1rem" }}>🛒</span>
+            {cart.length > 0 && (
+              <span className={badgeAnimate ? "badge-bounce" : ""} style={{
+                position: "absolute", top: -2, right: -4, background: C.deepRose, color: "white",
+                fontSize: "0.58rem", width: 16, height: 16, borderRadius: "50%",
+                display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "bold",
+                fontFamily: "var(--body-font)"
+              }}>
+                {cart.reduce((sum, item) => sum + item.quantity, 0)}
+              </span>
+            )}
+          </button>
+
           <a href={WA} target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp" style={{
             background: C.deepRose, color: "white",
             padding: "0.5rem 1.2rem", borderRadius: "2rem",
@@ -71,14 +87,32 @@ export default function Nav({ scrolled }) {
           }}>Order Now</a>
         </div>
 
-        {/* Hamburger */}
-        <button className={`hamburger-btn${menuOpen ? " open" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          style={{ position: "relative", zIndex: 200 }}>
-          <span /><span /><span />
-        </button>
+        {/* Right Nav for Mobile (Hamburger & Mobile Cart) */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1.2rem" }}>
+          {/* Mobile Cart Icon Button */}
+          <button className="mobile-cart-btn" onClick={onCartClick} aria-label="Open Shopping Cart" style={{ display: "none", position: "relative", cursor: "pointer", alignItems: "center", justifyContent: "center", padding: "4px" }}>
+            <span style={{ fontSize: "1.25rem" }}>🛒</span>
+            {cart.length > 0 && (
+              <span className={badgeAnimate ? "badge-bounce" : ""} style={{
+                position: "absolute", top: -4, right: -6, background: C.deepRose, color: "white",
+                fontSize: "0.55rem", width: 16, height: 16, borderRadius: "50%",
+                display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "bold",
+                fontFamily: "var(--body-font)"
+              }}>
+                {cart.reduce((sum, item) => sum + item.quantity, 0)}
+              </span>
+            )}
+          </button>
+
+          {/* Hamburger */}
+          <button className={`hamburger-btn${menuOpen ? " open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            style={{ position: "relative", zIndex: 200 }}>
+            <span /><span /><span />
+          </button>
+        </div>
       </nav>
 
       {/* ===== FULL-SCREEN OVERLAY MOBILE MENU ===== */}
@@ -206,7 +240,7 @@ export default function Nav({ scrolled }) {
         </>
       )}
 
-      {/* Overlay animations */}
+      {/* Overlay animations and responsive overrides */}
       <style>{`
         @keyframes overlayFadeIn {
           from { opacity: 0; }
@@ -219,6 +253,11 @@ export default function Nav({ scrolled }) {
         @keyframes overlayItemIn {
           from { opacity: 0; transform: translateY(16px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+          .mobile-cart-btn {
+            display: flex !important;
+          }
         }
       `}</style>
     </>
