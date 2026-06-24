@@ -37,18 +37,18 @@ export default function SizeGuide({ fadeStyle }) {
             </table>
           </div>
 
-          {/* Ring sizes */}
+          {/* Necklace Sizing */}
           <div style={{ background: "white", borderRadius: "1.5rem", padding: "2rem", flex: "1 1 300px", maxWidth: 360, boxShadow: "0 2px 20px rgba(158,90,106,0.08)" }}>
-            <h3 style={{ fontFamily: "var(--heading-font)", fontSize: "1.1rem", color: C.deepRose, marginBottom: "1.5rem", fontWeight: 400 }}>💍 Ring Sizing</h3>
-            <p style={{ fontSize: "0.85rem", color: C.textLight, lineHeight: 1.8, marginBottom: "1rem", fontFamily: "var(--body-font)" }}>
-              Our beaded rings are <strong style={{ color: C.deepRose }}>adjustable</strong> and fit most finger sizes comfortably.
+            <h3 style={{ fontFamily: "var(--heading-font)", fontSize: "1.1rem", color: C.deepRose, marginBottom: "1.5rem", fontWeight: 400 }}>📿 Necklace Sizing</h3>
+            <p style={{ fontSize: "0.85rem", color: C.textLight, lineHeight: 1.8, marginBottom: "1.2rem", fontFamily: "var(--body-font)" }}>
+              Our beaded neckpieces are crafted to a standard length of <strong style={{ color: C.deepRose }}>40 cm</strong> and include a <strong style={{ color: C.deepRose }}>5 cm adjuster chain</strong>.
             </p>
             <p style={{ fontSize: "0.85rem", color: C.textLight, lineHeight: 1.8, marginBottom: "1.5rem", fontFamily: "var(--body-font)" }}>
-              <strong>Tip:</strong> Wrap a thin strip of paper around your finger, mark where it meets, and measure the length in mm. DM us the measurement for a perfect fit!
+              This allows it to sit elegantly around the collarbone. Need a custom length? Let us know in your DM and we will gladly adjust it for you!
             </p>
             <div style={{ background: `linear-gradient(135deg, ${C.softPink}, rgba(242,196,206,0.3))`, borderRadius: "1rem", padding: "1rem", textAlign: "center" }}>
               <span style={{ fontSize: "2rem" }}>📏</span>
-              <p style={{ fontSize: "0.72rem", color: C.textLight, marginTop: "0.5rem", fontFamily: "var(--body-font)" }}>Not sure? DM us — we'll help!</p>
+              <p style={{ fontSize: "0.72rem", color: C.textLight, marginTop: "0.5rem", fontFamily: "var(--body-font)" }}>Need a custom size? We'll make it for you!</p>
             </div>
           </div>
         </div>

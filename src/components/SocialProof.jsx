@@ -4,10 +4,18 @@ const C = { deepRose: "#9e5a6a", gold: "#c9a84c", text: "#4a3035", textLight: "#
 
 const names = ["Priya", "Ananya", "Shreya", "Neha", "Riya", "Kavya", "Meera", "Isha"];
 const cities = ["Mumbai", "Delhi", "Pune", "Bangalore", "Jaipur", "Hyderabad", "Chennai"];
-const items = ["Pastel Beaded Bracelet", "Gold Charm Bracelet", "Beaded Ring", "Friendship Set", "Floral Bracelet"];
+const items = [
+  "Classic Friendship Bracelet Duo",
+  "Star Wars Galactic Edition 1 Bracelet",
+  "Mystic Evil Eye Protection Bracelet",
+  "Radiant Sunshine Bloom Bracelet",
+  "Sea Range Cobalt Wave Bracelet",
+  "Sea Range Ocean Breeze Necklace",
+  "Solid Stack Candy Pop Bracelet"
+];
 
 function randomToast() {
-  return `${names[Math.floor(Math.random() * names.length)]} from ${cities[Math.floor(Math.random() * cities.length)]} just ordered a ${items[Math.floor(Math.random() * items.length)]} 🎀`;
+  return `${names[Math.floor(Math.random() * names.length)]} from ${cities[Math.floor(Math.random() * cities.length)]} just ordered the ${items[Math.floor(Math.random() * items.length)]} 🎀`;
 }
 
 export default function SocialProof() {

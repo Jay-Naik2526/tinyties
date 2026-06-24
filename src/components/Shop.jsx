@@ -7,15 +7,99 @@ const C = {
 
 const WA_NUM = "917888684081";
 
-const categories = ["All", "Bracelets", "Rings", "Sets"];
+const categories = ["All", "Bracelets", "Necklaces"];
 
 const products = [
-  { emoji: "🧿", bg: ["#faeef1", "#f2c4ce"], badge: "Bestseller", name: "Pastel Beaded Bracelet", desc: "Soft pastel beads on elastic cord. Multiple color combos available.", price: "₹149", priceNum: 149, cat: "Bracelets" },
-  { emoji: "💛", bg: ["#fdf3e8", "#e8d5a3"], badge: "New", name: "Gold Charm Bracelet", desc: "Delicate gold-toned beads with star and heart charms.", price: "₹199", priceNum: 199, cat: "Bracelets" },
-  { emoji: "💍", bg: ["#f0eef8", "#d4c4e8"], badge: null, name: "Beaded Ring", desc: "Dainty beaded rings in adjustable size. Stack them or wear solo.", price: "₹99", priceNum: 99, cat: "Rings" },
-  { emoji: "🎁", bg: ["#eef8f0", "#c4e8cc"], badge: "Custom", name: "Friendship Set", desc: "Matching bracelet duo for you and your bestie. Choose your colors.", price: "₹249", priceNum: 249, cat: "Sets" },
-  { emoji: "🌸", bg: ["#faeef1", "#f2c4ce"], badge: null, name: "Floral Beaded Bracelet", desc: "Flower-shaped beads with a spring color palette. Perfect everyday wear.", price: "₹169", priceNum: 169, cat: "Bracelets" },
-  { emoji: "💎", bg: ["#eef0f8", "#c4cce8"], badge: "New", name: "Crystal Ring Set", desc: "Set of 3 dainty crystal-accent beaded rings. Mix and match your style.", price: "₹179", priceNum: 179, cat: "Rings" },
+  {
+    image: "/images/friendship-bracelet.jpeg",
+    badge: "Pair Deal",
+    name: "Classic Friendship Bracelet Duo",
+    desc: "Beautifully hand-strung matching beaded bracelets to share. Buy one for ₹89, or get the matching pair for ₹159!",
+    price: "₹89 / ₹159 Pair",
+    priceNum: 89,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/star-wars-1.jpeg",
+    badge: "New",
+    name: "Star Wars Galactic Edition 1 Bracelet",
+    desc: "Unleash the force with this sleek, galaxy-inspired dark beaded bracelet. Perfect for daily wear.",
+    price: "₹49",
+    priceNum: 49,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/star-wars-2.jpeg",
+    badge: "New",
+    name: "Star Wars Galactic Edition 2 Bracelet",
+    desc: "A galactic-themed bracelet featuring classic metallic spacers and custom dark beads.",
+    price: "₹49",
+    priceNum: 49,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/evil-eye.jpeg",
+    badge: "Popular",
+    name: "Mystic Evil Eye Protection Bracelet",
+    desc: "Keep negative vibes away with this gorgeous protection charm, crafted with glass evil eye beads.",
+    price: "₹89",
+    priceNum: 89,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/sunshine.jpeg",
+    badge: "Bestseller",
+    name: "Radiant Sunshine Bloom Bracelet",
+    desc: "Bring warm, bright rays wherever you go with this cheerful yellow-and-white flower-beaded bracelet.",
+    price: "₹89",
+    priceNum: 89,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/sea-range-1.jpeg",
+    badge: "Ocean Vibes",
+    name: "Sea Range Cobalt Wave Bracelet",
+    desc: "Inspired by deep ocean waters, hand-strung with rich cobalt blue and white glass beads.",
+    price: "₹49",
+    priceNum: 49,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/sea-range-2.jpeg",
+    badge: "Ocean Vibes",
+    name: "Sea Range Golden Shore Bracelet",
+    desc: "Elevated coastal bracelet blending rich blue beads with warm golden accents for a sunny beach day look.",
+    price: "₹89",
+    priceNum: 89,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/sea-range-neckpeice.jpeg",
+    badge: "Statement Piece",
+    name: "Sea Range Ocean Breeze Necklace",
+    desc: "A stunning ocean-inspired beaded necklace featuring alternating cobalt and soft white beads. Comes with an adjustable extender.",
+    price: "₹129",
+    priceNum: 129,
+    cat: "Necklaces"
+  },
+  {
+    image: "/images/solid-stack-bracelet.jpeg",
+    badge: "Stackable",
+    name: "Solid Stack Candy Pop Bracelet",
+    desc: "A vibrant, colorful solid bead stack designed to add a splash of joy and playful color to your wrist.",
+    price: "₹69",
+    priceNum: 69,
+    cat: "Bracelets"
+  },
+  {
+    image: "/images/solid-stack-bracelet-2.jpeg",
+    badge: "Stackable",
+    name: "Solid Stack Pastel Hue Bracelet",
+    desc: "A dreamy, subtle stack featuring soft pastel tones, perfect for layering with your other jewelry.",
+    price: "₹69",
+    priceNum: 69,
+    cat: "Bracelets"
+  }
 ];
 
 export default function Shop({ fadeStyle }) {
@@ -58,16 +142,16 @@ export default function Shop({ fadeStyle }) {
           <article key={p.name} className="product-card" data-id={`p${i}`}
             itemScope itemType="https://schema.org/Product"
             style={{ background: "white", borderRadius: "1.5rem", overflow: "hidden", transition: "transform 0.3s, box-shadow 0.3s", boxShadow: "0 2px 20px rgba(158,90,106,0.08)", ...fadeStyle(`p${i}`, i * 0.08) }}>
-            <div style={{ height: 200, background: `linear-gradient(135deg, ${p.bg[0]}, ${p.bg[1]})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "5rem", position: "relative" }}>
-              {p.badge && <span style={{ position: "absolute", top: "0.8rem", left: "0.8rem", background: C.deepRose, color: "white", fontSize: "0.58rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.2rem 0.7rem", borderRadius: "2rem" }}>{p.badge}</span>}
-              <span role="img" aria-label={p.name}>{p.emoji}</span>
+            <div style={{ height: 260, background: "#fdf8f5", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
+              {p.badge && <span style={{ position: "absolute", top: "0.8rem", left: "0.8rem", background: C.deepRose, color: "white", fontSize: "0.58rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.2rem 0.7rem", borderRadius: "2rem", zIndex: 2 }}>{p.badge}</span>}
+              <img src={p.image} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} className="product-image" />
             </div>
             <div style={{ padding: "1.25rem 1.5rem 1.5rem" }}>
               <h3 itemProp="name" style={{ fontFamily: "var(--heading-font)", fontSize: "1.15rem", color: C.text, marginBottom: "0.35rem", fontWeight: 400 }}>{p.name}</h3>
-              <p itemProp="description" style={{ fontSize: "0.78rem", color: C.textLight, lineHeight: 1.6, marginBottom: "1rem", fontFamily: "var(--body-font)" }}>{p.desc}</p>
+              <p itemProp="description" style={{ fontSize: "0.78rem", color: C.textLight, lineHeight: 1.6, marginBottom: "1rem", fontFamily: "var(--body-font)", minHeight: "3.2rem" }}>{p.desc}</p>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div itemProp="offers" itemScope itemType="https://schema.org/Offer">
-                  <span itemProp="price" content={p.priceNum} style={{ fontFamily: "var(--heading-font)", fontSize: "1.4rem", color: C.deepRose, fontWeight: 600 }}>{p.price}</span>
+                  <span itemProp="price" content={p.priceNum} style={{ fontFamily: "var(--heading-font)", fontSize: "1.3rem", color: C.deepRose, fontWeight: 600 }}>{p.price}</span>
                   <meta itemProp="priceCurrency" content="INR" />
                 </div>
                 <a href={`https://wa.me/${WA_NUM}?text=Hi! I want to order the ${p.name} 🎀`} target="_blank" rel="noopener noreferrer" className="order-btn"

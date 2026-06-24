@@ -135,10 +135,17 @@ button {
   to { transform: translateX(120%); opacity: 0; }
 }
 
-/* ===== HOVER EFFECTS ===== */
 .product-card:hover {
   transform: translateY(-6px) !important;
   box-shadow: 0 12px 40px rgba(158, 90, 106, 0.2) !important;
+}
+
+.product-image {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.08) !important;
 }
 
 .review-card:hover {

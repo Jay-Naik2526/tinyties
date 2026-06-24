@@ -29,7 +29,7 @@ export default function Hero() {
           Handmade Beaded Jewelry
         </p>
         <p style={{ fontFamily: "var(--heading-font)", fontSize: "1.1rem", fontStyle: "italic", color: C.textLight, marginBottom: "2.5rem", animation: "heroFade 0.8s ease 0.5s both", opacity: 0 }}>
-          Handcrafted with Heart — Bracelets, Rings & More
+          Handcrafted with Heart — Bracelets, Necklaces & More
         </p>
         <div className="hero-buttons" style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap", animation: "heroFade 0.8s ease 0.65s both", opacity: 0 }}>
           <a href="#shop" className="btn-primary" style={{ background: C.deepRose, color: "white", padding: "0.9rem 2.2rem", borderRadius: "3rem", fontSize: "0.78rem", letterSpacing: "0.15em", textTransform: "uppercase", transition: "all 0.3s", boxShadow: "0 4px 20px rgba(158,90,106,0.3)", fontFamily: "var(--body-font)" }}>

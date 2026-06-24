@@ -9,7 +9,7 @@ export default function About({ fadeStyle }) {
       <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }} data-id="about">
         <div className="about-visual" style={{ position: "relative", height: 420, ...fadeStyle("about", 0) }} aria-hidden="true">
           <div style={{ position: "absolute", width: "72%", height: 340, top: 0, left: 0, borderRadius: "2rem", background: `linear-gradient(135deg, ${C.softPink}, ${C.blush})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "8rem" }}>🎀</div>
-          <div style={{ position: "absolute", width: "52%", height: 190, bottom: 0, right: 0, borderRadius: "2rem", border: `2px solid ${C.goldLight}`, background: C.cream, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "5rem" }}>💍</div>
+          <div style={{ position: "absolute", width: "52%", height: 190, bottom: 0, right: 0, borderRadius: "2rem", border: `2px solid ${C.goldLight}`, background: C.cream, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "5rem" }}>📿</div>
           <div style={{ position: "absolute", width: 110, height: 110, borderRadius: "50%", border: `1.5px solid ${C.gold}`, opacity: 0.5, top: -15, right: 15 }} />
           <div style={{ position: "absolute", width: 75, height: 75, borderRadius: "50%", border: `1.5px solid ${C.gold}`, opacity: 0.4, bottom: 25, left: -15 }} />
         </div>
@@ -23,7 +23,7 @@ export default function About({ fadeStyle }) {
             Every piece at Tiny Ties is hand-crafted with care and intention. We believe jewelry should feel personal — like a little piece of someone's heart you can wear every day.
           </p>
           <p style={{ fontSize: "0.95rem", lineHeight: 1.9, color: C.textLight, fontWeight: 300, marginBottom: "2rem", fontFamily: "var(--body-font)" }}>
-            From delicate beaded bracelets to custom rings, each creation is made to order, just for you. No factories. No mass production. Just hands, beads, and heart.
+            From delicate beaded bracelets to statement necklaces, each creation is made to order, just for you. No factories. No mass production. Just hands, beads, and heart.
           </p>
           <div className="stats-row" style={{ display: "flex", gap: "2.5rem" }}>
             {[["200+", "Happy Customers"], ["100%", "Handmade"], ["∞", "Custom Options"]].map(([n, l]) => (
