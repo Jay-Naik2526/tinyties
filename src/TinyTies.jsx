@@ -30,6 +30,7 @@ export default function TinyTies() {
   const [cartOpen, setCartOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
   const [badgeAnimate, setBadgeAnimate] = useState(false);
+  const [toast, setToast] = useState(null); // { name, exiting }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -63,8 +64,13 @@ export default function TinyTies() {
       }
       return [...prevCart, { ...product, size, quantity: 1 }];
     });
-    // Auto-open cart so customer sees what they just added
-    setCartOpen(true);
+    // Show toast instead of opening cart — user can keep adding items
+    setToast({ name: product.name, exiting: false });
+    if (window._toastTimer) clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => {
+      setToast(t => t ? { ...t, exiting: true } : null);
+      setTimeout(() => setToast(null), 400);
+    }, 2800);
     // Trigger cart badge animation bounce
     setBadgeAnimate(true);
     setTimeout(() => setBadgeAnimate(false), 300);
@@ -165,6 +171,36 @@ export default function TinyTies() {
       <BackToTop />
       <SocialProof />
 
+      {/* ===== ADD TO CART TOAST ===== */}
+      {toast && (
+        <div className="toast-container">
+          <div className={`toast${toast.exiting ? " exiting" : ""}`} role="status" aria-live="polite"
+            style={{ display: "flex", alignItems: "center", gap: "0.75rem", minWidth: 220 }}>
+            <span style={{ fontSize: "1.2rem" }}>🎀</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 600, fontSize: "0.78rem", color: "#4a3035", fontFamily: "var(--body-font)" }}>
+                Added to cart!
+              </div>
+              <div style={{ fontSize: "0.68rem", color: "#8a6870", fontFamily: "var(--body-font)", marginTop: "0.1rem",
+                maxWidth: 140, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {toast.name}
+              </div>
+            </div>
+            <button
+              onClick={() => { setToast(null); setCartOpen(true); }}
+              style={{
+                background: "#9e5a6a", color: "white", border: "none",
+                borderRadius: "0.6rem", padding: "0.35rem 0.7rem",
+                fontSize: "0.65rem", fontWeight: 600, cursor: "pointer",
+                letterSpacing: "0.05em", textTransform: "uppercase",
+                fontFamily: "var(--body-font)", whiteSpace: "nowrap",
+              }}
+            >
+              View Cart
+            </button>
+          </div>
+        </div>
+      )}
       {/* Cart side panel and Quick View Modal */}
       <Cart
         cart={cart}
