@@ -20,7 +20,7 @@ const INSTA_DM = "https://ig.me/m/tiny._ties";
 const marqueeItems = [
   "Handmade Bracelets ✦", "Custom Orders Open ✦", "Beaded Necklaces ✦",
   "Friendship Bracelets ✦", "Handmade with Heart ✦", "Gift for Her ✦",
-  "Free Shipping 200+ ✦", "Made in India ✦",
+  "Made to Order ✦", "Made in India ✦",
 ];
 
 export default function TinyTies() {
@@ -63,6 +63,8 @@ export default function TinyTies() {
       }
       return [...prevCart, { ...product, size, quantity: 1 }];
     });
+    // Auto-open cart so customer sees what they just added
+    setCartOpen(true);
     // Trigger cart badge animation bounce
     setBadgeAnimate(true);
     setTimeout(() => setBadgeAnimate(false), 300);

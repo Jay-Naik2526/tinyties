@@ -278,6 +278,7 @@ export default function Cart({ cart, isOpen, onClose, updateQuantity, removeFrom
           <div
             style={{
               padding: "1.5rem 1.75rem",
+              paddingBottom: "calc(1.5rem + env(safe-area-inset-bottom, 0px))",
               borderTop: `1px solid ${C.goldLight}`,
               background: "white",
             }}

@@ -613,6 +613,7 @@ button:focus-visible {
   width: 100%;
   max-width: 420px;
   height: 100vh;
+  height: 100dvh; /* dynamic viewport height — accounts for mobile browser bars */
   background: rgba(253, 248, 245, 0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
